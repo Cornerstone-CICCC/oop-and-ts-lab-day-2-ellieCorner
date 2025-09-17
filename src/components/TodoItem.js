@@ -12,11 +12,15 @@ export class TodoItem extends Component {
     const todoElement = document.createElement("div");
     todoElement.className = "todo-item";
     todoElement.innerHTML = `
-      <span style="text-decoration:${completed ? "line-through" : "none"}">
+    <li class="${completed ? "completed" : ""}">
+      <span>
         ${text}
       </span>
-      <button>${completed ? "Mark Incomplete" : "Mark Complete"}</button>
-      <button>Delete</button>
+      <div>
+        <button>${completed ? "Mark Incomplete" : "Mark Complete"}</button>
+        <button>Delete</button>
+      </div>
+    </li>
     `;
 
     const [toggleBtn, deleteBtn] = todoElement.querySelectorAll("button");

@@ -6,12 +6,13 @@ export class TodoList extends Component {
   render() {
     const todoListElement = document.createElement("div");
     todoListElement.className = "todo-list";
-
+    const ulElement = document.createElement("ul");
+    todoListElement.appendChild(ulElement);
     const renderTodos = (todos) => {
-      todoListElement.innerHTML = "";
+      ulElement.innerHTML = "";
       todos.forEach((todo) => {
         const item = new TodoItem(todo).render();
-        todoListElement.appendChild(item);
+        ulElement.appendChild(item);
       });
     };
 
