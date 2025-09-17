@@ -1,9 +1,28 @@
 import { Component } from "../common/Component.js";
+import { todoContext } from "../contexts/TodoContext.js";
 
 export class TodoItem extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    const todoElement = document.createElement('li')
-    todoElement.className = "todo-item"
+    const { id, text, completed } = this.props;
+
+    const todoElement = document.createElement("div");
+    todoElement.className = "todo-item";
+    todoElement.innerHTML = `
+      <span style="text-decoration:${completed ? "line-through" : "none"}">
+        ${text}
+      </span>
+      <button>${completed ? "Mark Incomplete" : "Mark Complete"}</button>
+      <button>Delete</button>
+    `;
+
+    const [toggleBtn, deleteBtn] = todoElement.querySelectorAll("button");
+
+    toggleBtn.addEventListener("click", () => todoContext.toggleTodo(id));
+    deleteBtn.addEventListener("click", () => todoContext.deleteTodo(id));
 
     return todoElement;
   }
